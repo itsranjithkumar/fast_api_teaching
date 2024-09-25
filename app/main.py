@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from .routers import employee, leave
+
 
 app = FastAPI()
 
@@ -22,3 +24,7 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
+
+app.include_router(employee.router)
+app.include_router(leave.router)
+
